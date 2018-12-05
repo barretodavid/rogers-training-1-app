@@ -23,6 +23,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostListComponent } from './post-list/post-list.component';
+import { InputComponent } from './input/input.component';
+import { TextareaComponent } from './textarea/textarea.component';
 
 @NgModule({
   imports: [
@@ -46,7 +48,9 @@ import { PostListComponent } from './post-list/post-list.component';
     NavigationComponent,
     PostEditComponent,
     PostCreateComponent,
-    PostListComponent
+    PostListComponent,
+    InputComponent,
+    TextareaComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
