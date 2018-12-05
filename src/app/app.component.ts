@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'rg-root',
+  template: `
+    <rg-navigation></rg-navigation>
+  `,
 })
 export class AppComponent {
-  title = 'ng-training-blog';
 }

@@ -7,10 +7,13 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "rg",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "styleext": "scss",
+          "changeDetection": "OnPush",
+          "inlineStyle": true,
+          "inlineTemplate": true
         }
       },
       "architect": {
@@ -27,7 +30,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/tachyons/css/tachyons.min.css"
             ],
             "scripts": []
           },
