@@ -1,0 +1,23 @@
+<form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-title *ngIf="!(routerSelector.isEdit$ | async)">
+      Create Blog Post
+    </mat-card-title>
+    <mat-card-title *ngIf="routerSelector.isEdit$ | async">
+      Edit Blog Post
+    </mat-card-title>
+    <mat-card-content class="flex flex-column">
+      <rg-input formControlName="title" label="Title"></rg-input>
+      <rg-textarea formControlName="content" label="Content"></rg-textarea>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button
+        type="submit"
+        color="primary"
+        [disabled]="!blogForm.valid"
+        click="onSubmit()">
+        Save
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

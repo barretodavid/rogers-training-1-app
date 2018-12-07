@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PostCreateComponent } from './post-create/post-create.component';
-import { PostListComponent } from './post-list/post-list.component';
+import { PostCreateEditComponent } from './components/post-create-edit/post-create-edit.component';
+import { PostListComponent } from './components/post-list/post-list.component';
+
+export enum PostUrl {
+  Create = 'create-post',
+  Edit = 'edit-post'
+}
 
 const routes: Routes = [
   { path: '', component: PostListComponent },
-  { path: 'create', component: PostCreateComponent },
+  { path: PostUrl.Create, component: PostCreateEditComponent },
+  { path: `${PostUrl.Edit}/:uuid`, component: PostCreateEditComponent },
 ];
 
 @NgModule({

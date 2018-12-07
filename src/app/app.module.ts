@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -12,19 +13,30 @@ import {
   MatListModule,
   MatCardModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatSnackBarModule,
 } from '@angular/material';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { PostSummaryComponent } from './post-summary/post-summary.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
-import { NavigationComponent } from './navigation/navigation.component';
-import { PostEditComponent } from './post-edit/post-edit.component';
-import { PostCreateComponent } from './post-create/post-create.component';
-import { PostListComponent } from './post-list/post-list.component';
-import { InputComponent } from './input/input.component';
-import { TextareaComponent } from './textarea/textarea.component';
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+import { PostSummaryComponent } from './components/post-summary/post-summary.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { PostCreateEditComponent } from './components/post-create-edit/post-create-edit.component';
+import { PostListComponent } from './components/post-list/post-list.component';
+import { InputComponent } from './components/input/input.component';
+import { TextareaComponent } from './components/textarea/textarea.component';
+
+import { reducers, metaReducers } from './store';
+import { PostEffects } from './store/post.effects';
+
+import { environment } from '../environments/environment';
+import { RouterSerializer } from './store/router.serializer';
 
 @NgModule({
   imports: [
@@ -33,6 +45,7 @@ import { TextareaComponent } from './textarea/textarea.component';
     BrowserAnimationsModule,
     LayoutModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -41,13 +54,19 @@ import { TextareaComponent } from './textarea/textarea.component';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([PostEffects]),
+    StoreRouterConnectingModule.forRoot({
+      serializer: RouterSerializer
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   declarations: [
     AppComponent,
     PostSummaryComponent,
     NavigationComponent,
-    PostEditComponent,
-    PostCreateComponent,
+    PostCreateEditComponent,
     PostListComponent,
     InputComponent,
     TextareaComponent,
