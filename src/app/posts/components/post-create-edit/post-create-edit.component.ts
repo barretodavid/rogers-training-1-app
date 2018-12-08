@@ -1,4 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  OnDestroy,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
@@ -16,13 +21,15 @@ import { Post } from '../../posts.models';
 import { PostSelector } from '../../store/posts.selectors';
 import { DeletePostStartAction } from '../../store/actions/delete-post.actions';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'rg-post-create',
   templateUrl: './post-create-edit.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PostCreateEditComponent implements OnInit {
+export class PostCreateEditComponent implements OnInit, OnDestroy {
+  subs = new Subscription();
   blogForm: FormGroup;
   postUUID: string;
 
@@ -40,21 +47,25 @@ export class PostCreateEditComponent implements OnInit {
       content: ['', Validators.required],
     });
 
-    this.postSelector.fetchPost$.subscribe(uuid => {
-      this.store.dispatch(new GetPostStartAction(uuid));
-    });
+    this.subs.add(
+      this.postSelector.fetchPost$.subscribe(uuid => {
+        this.store.dispatch(new GetPostStartAction(uuid));
+      }),
+    );
 
     const post$ = this.routerSelector.uuid$.pipe(
       mergeMap(uuid => this.postSelector.getPostByUUID(uuid)),
     );
 
-    post$.subscribe(post => {
-      this.blogForm.patchValue({
-        title: post.title,
-        content: post.content,
-      });
-      this.postUUID = post.uuid;
-    });
+    this.subs.add(
+      post$.subscribe(post => {
+        this.blogForm.patchValue({
+          title: post.title,
+          content: post.content,
+        });
+        this.postUUID = post.uuid;
+      }),
+    );
   }
 
   onSave(): void {
@@ -74,5 +85,9 @@ export class PostCreateEditComponent implements OnInit {
   onDelete(uuid: string): void {
     this.store.dispatch(new DeletePostStartAction(uuid));
     this.router.navigate(['/']);
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 }

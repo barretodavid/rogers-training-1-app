@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostListComponent when there are no posts in the store should render an empty body 1`] = `
+<rg-post-list
+  postSelector={[Function Object]}
+  store={[Function Object]}
+>
+  
+</rg-post-list>
+`;
+
+exports[`PostListComponent when there is at least on blog post in the store it should render the post in the body 1`] = `
+<rg-post-list
+  postSelector={[Function Object]}
+  store={[Function Object]}
+>
+  <mat-card
+    class="mv2 mat-card"
+  >
+    <mat-card-title
+      class="mat-card-title"
+    >
+      <a
+        href="/edit-post/123"
+        ng-reflect-router-link="/edit-post,123"
+      >
+        my title
+      </a>
+    </mat-card-title>
+    <mat-card-content
+      class="mat-card-content"
+    >
+      my content
+    </mat-card-content>
+  </mat-card>
+</rg-post-list>
+`;

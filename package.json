@@ -5,7 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --runInBand",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "mock-server": "json-server --watch db.json --id uuid",
@@ -26,6 +28,10 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupTestFrameworkScriptFile": "<rootDir>/src/jest-setup.ts"
   },
   "private": true,
   "dependencies": {
@@ -59,14 +65,15 @@
     "@angular/compiler-cli": "~7.1.1",
     "@angular/language-service": "~7.1.1",
     "@ngrx/schematics": "^6.1.2",
-    "@types/jasmine": "~2.8.8",
-    "@types/jasminewd2": "~2.0.3",
+    "@types/jest": "^23.3.10",
     "@types/node": "~8.9.4",
     "@types/uuid": "^3.4.4",
     "codelyzer": "~4.5.0",
     "husky": "^1.2.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
+    "jest": "^23.6.0",
+    "jest-preset-angular": "^6.0.2",
     "json-server": "^0.14.0",
     "karma": "~3.0.0",
     "karma-chrome-launcher": "~2.2.0",

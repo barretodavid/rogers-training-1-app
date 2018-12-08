@@ -1,4 +1,9 @@
-import { Component, ChangeDetectionStrategy, Self } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Self,
+  Optional,
+} from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { BaseInputClass } from '../base-input/base-input.class';
 
