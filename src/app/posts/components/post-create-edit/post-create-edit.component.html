@@ -1,4 +1,4 @@
-<form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="blogForm">
   <mat-card>
     <mat-card-title *ngIf="!(routerSelector.isEdit$ | async)">
       Create Blog Post
@@ -12,11 +12,23 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button
-        type="submit"
+        type="button"
         color="primary"
         [disabled]="!blogForm.valid"
-        click="onSubmit()">
+        (click)="onSave()">
         Save
+      </button>
+      <button mat-raised-button
+        *ngIf="routerSelector.isEdit$ | async"
+        type="button"
+        color="warn"
+        (click)="onDelete(postUUID)">
+        Delete
+      </button>
+      <button mat-raised-button
+        type="button"
+        [routerLink]="['/']">
+        Back to List
       </button>
     </mat-card-actions>
   </mat-card>

@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store, createFeatureSelector, select, createSelector } from '@ngrx/store';
-import { State, Post } from './models';
 import { Observable, zip, of } from 'rxjs';
 import { filter, mergeMap, map } from 'rxjs/operators';
-import { RouterSelector } from './router.selector';
+
+import { State } from '../../store/models';
+import { Post } from '../posts.models';
+import { RouterSelector } from '../../store/router.selector';
 
 const selectPosts = createFeatureSelector<State, Post[]>('posts');
 
@@ -30,6 +32,15 @@ export class PostSelector {
       filter(([uuid, isPostAvailable]) => !isPostAvailable),
       map(([uuid, isPostAvailable]) => uuid)
     );
+
+  fetchAllPosts$ = this.store.pipe(
+    select(selectPosts),
+    filter(posts => posts.length === 0),
+  );
+
+  posts$ = this.store.pipe(
+    select(selectPosts),
+  );
 
   isPostAvailable(uuid: string): Observable<boolean> {
     return this.store.pipe(

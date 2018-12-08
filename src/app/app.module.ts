@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -11,9 +12,6 @@ import {
   MatSidenavModule,
   MatIconModule,
   MatListModule,
-  MatCardModule,
-  MatFormFieldModule,
-  MatInputModule,
   MatSnackBarModule,
 } from '@angular/material';
 
@@ -22,56 +20,45 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
-import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
-import { PostSummaryComponent } from './components/post-summary/post-summary.component';
+
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { PostCreateEditComponent } from './components/post-create-edit/post-create-edit.component';
-import { PostListComponent } from './components/post-list/post-list.component';
-import { InputComponent } from './components/input/input.component';
-import { TextareaComponent } from './components/textarea/textarea.component';
 
 import { reducers, metaReducers } from './store';
-import { PostEffects } from './store/post.effects';
 
 import { environment } from '../environments/environment';
 import { RouterSerializer } from './store/router.serializer';
 
+import { PostsModule } from './posts/posts.module';
+import { SharedModule } from './shared/shared.module';
+
+
 @NgModule({
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    LayoutModule,
-    ReactiveFormsModule,
     HttpClientModule,
+    LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatSnackBarModule,
+    RouterModule.forRoot([]),
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([PostEffects]),
+    EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({
       serializer: RouterSerializer
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    PostsModule,
+    SharedModule,
   ],
   declarations: [
     AppComponent,
-    PostSummaryComponent,
     NavigationComponent,
-    PostCreateEditComponent,
-    PostListComponent,
-    InputComponent,
-    TextareaComponent,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

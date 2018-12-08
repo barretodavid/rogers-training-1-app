@@ -1,10 +1,5 @@
 import { Params } from '@angular/router';
-
-export type Post = Readonly<{
-  uuid: string;
-  title: string;
-  content: string;
-}>;
+import { Post } from '../posts/posts.models';
 
 export type Flags = Readonly<{
   isLoading: boolean;
@@ -24,7 +19,7 @@ export type Router = Readonly<{
 }>;
 
 export interface State {
-  posts: Post[];
+  posts?: Post[];
   flags: Flags;
   router: Router;
 }
