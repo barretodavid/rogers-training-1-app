@@ -6,7 +6,6 @@ import { UpdatePostActionType } from './actions/update-post.actions';
 import { DeletePostActionType } from './actions/delete-post.actions';
 import { PostAction } from './actions/post.action';
 
-
 export function postsReducer(posts: Post[] = [], action: PostAction): Post[] {
   switch (action.type) {
     case GetPostActionType.Success:
@@ -14,7 +13,7 @@ export function postsReducer(posts: Post[] = [], action: PostAction): Post[] {
       return [...posts, action.payload];
     case UpdatePostActionType.Success:
       return posts.map(post =>
-        (post.uuid === action.payload.uuid) ? action.payload : post
+        post.uuid === action.payload.uuid ? action.payload : post,
       );
     case GetAllPostsActionType.Success:
       return action.payload;

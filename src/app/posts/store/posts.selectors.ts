@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Store, createFeatureSelector, select, createSelector } from '@ngrx/store';
+import {
+  Store,
+  createFeatureSelector,
+  select,
+  createSelector,
+} from '@ngrx/store';
 import { Observable, zip, of } from 'rxjs';
 import { filter, mergeMap, map } from 'rxjs/operators';
 
@@ -19,33 +24,25 @@ const selectIsPostAvailable = createSelector(
   post => !!post,
 );
 
-
 @Injectable({ providedIn: 'root' })
 export class PostSelector {
-
-  fetchPost$ = this.routerSelector.uuid$
-    .pipe(
-      mergeMap(uuid => zip(
-        of(uuid),
-        this.store.pipe(select(selectIsPostAvailable, { uuid }))),
-      ),
-      filter(([uuid, isPostAvailable]) => !isPostAvailable),
-      map(([uuid, isPostAvailable]) => uuid)
-    );
+  fetchPost$ = this.routerSelector.uuid$.pipe(
+    mergeMap(uuid =>
+      zip(of(uuid), this.store.pipe(select(selectIsPostAvailable, { uuid }))),
+    ),
+    filter(([uuid, isPostAvailable]) => !isPostAvailable),
+    map(([uuid, isPostAvailable]) => uuid),
+  );
 
   fetchAllPosts$ = this.store.pipe(
     select(selectPosts),
     filter(posts => posts.length === 0),
   );
 
-  posts$ = this.store.pipe(
-    select(selectPosts),
-  );
+  posts$ = this.store.pipe(select(selectPosts));
 
   isPostAvailable(uuid: string): Observable<boolean> {
-    return this.store.pipe(
-      select(selectIsPostAvailable, { uuid })
-    );
+    return this.store.pipe(select(selectIsPostAvailable, { uuid }));
   }
 
   getPostByUUID(uuid: string): Observable<Post> {
@@ -58,5 +55,5 @@ export class PostSelector {
   constructor(
     private store: Store<State>,
     private routerSelector: RouterSelector,
-  ) { }
+  ) {}
 }

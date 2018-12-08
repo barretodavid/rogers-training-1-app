@@ -7,26 +7,21 @@ import { GetAllPostsStartAction } from '../../store/actions/get-all-posts.action
 @Component({
   selector: 'rg-post-list',
   template: `
-    <mat-card class="mv2" *ngFor="let post of postSelector.posts$ | async">
+    <mat-card class="mv2" *ngFor="let post of (postSelector.posts$ | async)">
       <mat-card-title>
         <a [routerLink]="['/edit-post', post.uuid]">{{ post.title }}</a>
       </mat-card-title>
-      <mat-card-content>{{ post.content}}</mat-card-content>
+      <mat-card-content>{{ post.content }}</mat-card-content>
     </mat-card>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostListComponent implements OnInit {
-
-  constructor(
-    public postSelector: PostSelector,
-    private store: Store<State>
-  ) {}
+  constructor(public postSelector: PostSelector, private store: Store<State>) {}
 
   ngOnInit() {
     this.postSelector.fetchAllPosts$.subscribe(() => {
       this.store.dispatch(new GetAllPostsStartAction());
     });
   }
-
 }

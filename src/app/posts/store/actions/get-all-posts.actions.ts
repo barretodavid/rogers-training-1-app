@@ -22,4 +22,7 @@ export class GetAllPostsErrorAction implements Action {
   constructor() {}
 }
 
-export type GetAllPostsAction = GetAllPostsStartAction | GetAllPostsSuccessAction | GetAllPostsErrorAction;
+export type GetAllPostsAction =
+  | GetAllPostsStartAction
+  | GetAllPostsSuccessAction
+  | GetAllPostsErrorAction;

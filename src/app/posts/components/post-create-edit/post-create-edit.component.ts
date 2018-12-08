@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
 import { v4 as uuidV4 } from 'uuid';
-import { mergeMap, } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 
 import { State } from 'src/app/store/models';
 import { RouterSelector } from 'src/app/store/router.selector';
@@ -17,11 +17,10 @@ import { PostSelector } from '../../store/posts.selectors';
 import { DeletePostStartAction } from '../../store/actions/delete-post.actions';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'rg-post-create',
   templateUrl: './post-create-edit.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostCreateEditComponent implements OnInit {
   blogForm: FormGroup;
@@ -41,13 +40,12 @@ export class PostCreateEditComponent implements OnInit {
       content: ['', Validators.required],
     });
 
-    this.postSelector.fetchPost$
-      .subscribe(uuid => {
-        this.store.dispatch(new GetPostStartAction(uuid));
-      });
+    this.postSelector.fetchPost$.subscribe(uuid => {
+      this.store.dispatch(new GetPostStartAction(uuid));
+    });
 
     const post$ = this.routerSelector.uuid$.pipe(
-      mergeMap(uuid => this.postSelector.getPostByUUID(uuid))
+      mergeMap(uuid => this.postSelector.getPostByUUID(uuid)),
     );
 
     post$.subscribe(post => {

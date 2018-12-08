@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { createFeatureSelector, createSelector, Store, select } from '@ngrx/store';
+import {
+  createFeatureSelector,
+  createSelector,
+  Store,
+  select,
+} from '@ngrx/store';
 
 import { filter } from 'rxjs/operators';
 
 import { State, Router } from './models';
-
 
 const selectRouter = createFeatureSelector<State, Router>('router');
 
@@ -35,7 +39,6 @@ const selectQueryParams = createSelector(
 
 @Injectable({ providedIn: 'root' })
 export class RouterSelector {
-
   url$ = this.store.pipe(
     select(selectUrl),
     filter(url => !!url),
@@ -51,9 +54,7 @@ export class RouterSelector {
     filter(uuid => !!uuid),
   );
 
-  isEdit$ = this.store.pipe(
-    select(selectIsEdit),
-  );
+  isEdit$ = this.store.pipe(select(selectIsEdit));
 
   queryParams$ = this.store.pipe(
     select(selectQueryParams),

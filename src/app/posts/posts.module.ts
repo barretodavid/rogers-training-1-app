@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import {
-  MatCardModule,
-  MatButtonModule,
-} from '@angular/material';
+import { MatCardModule, MatButtonModule } from '@angular/material';
 
 import { PostsRoutingModule } from './posts-routing.module';
 import { PostCreateEditComponent } from './components/post-create-edit/post-create-edit.component';
@@ -17,7 +14,6 @@ import { StoreModule } from '@ngrx/store';
 import { postsReducer } from './store/posts.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PostEffects } from './store/posts.effects';
-
 
 @NgModule({
   imports: [

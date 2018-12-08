@@ -6,8 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { Post } from './posts.models';
 
-
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class PostsService {
   private baseUrl = 'http://localhost:3000/posts';
 
@@ -30,8 +29,8 @@ export class PostsService {
   }
 
   delete(uuid: string): Observable<string> {
-    return this.http.delete<string>(`${this.baseUrl}/${uuid}`).pipe(
-      map(() => uuid)
-    );
+    return this.http
+      .delete<string>(`${this.baseUrl}/${uuid}`)
+      .pipe(map(() => uuid));
   }
 }

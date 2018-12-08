@@ -13,8 +13,14 @@ $warn: mat-color($warn-palette);
 @include mat-core();
 @include angular-material-theme($theme);
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
 
 .mat-nav-list a.active {
   color: $primary;

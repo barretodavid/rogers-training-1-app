@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { createFeatureSelector, createSelector, Store, select } from '@ngrx/store';
+import {
+  createFeatureSelector,
+  createSelector,
+  Store,
+  select,
+} from '@ngrx/store';
 import { State, Flags } from './models';
 import { filter } from 'rxjs/operators';
 
@@ -23,18 +28,17 @@ const selectMessage = createSelector(
 const selectErrorMessage = createSelector(
   selectIsError,
   selectMessage,
-  (isError, message) => isError ? message : '',
+  (isError, message) => (isError ? message : ''),
 );
 
 const selectSuccessMessage = createSelector(
   selectIsError,
   selectMessage,
-  (isError, message) => isError ? '' : message,
+  (isError, message) => (isError ? '' : message),
 );
 
 @Injectable({ providedIn: 'root' })
 export class FlagsSelector {
-
   isLoadingFinished$ = this.store.pipe(
     select(selectIsLoading),
     filter(Boolean),

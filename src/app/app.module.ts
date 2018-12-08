@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import {
@@ -32,7 +31,6 @@ import { RouterSerializer } from './store/router.serializer';
 import { PostsModule } from './posts/posts.module';
 import { SharedModule } from './shared/shared.module';
 
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -49,16 +47,13 @@ import { SharedModule } from './shared/shared.module';
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({
-      serializer: RouterSerializer
+      serializer: RouterSerializer,
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     PostsModule,
     SharedModule,
   ],
-  declarations: [
-    AppComponent,
-    NavigationComponent,
-  ],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, NavigationComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

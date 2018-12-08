@@ -14,7 +14,6 @@ import { MatSnackBar } from '@angular/material';
   `,
 })
 export class AppComponent implements OnInit, OnDestroy {
-
   subs = new Subscription();
 
   constructor(
@@ -26,24 +25,20 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const dismissedSuccess$ = this.flags.successMessage$.pipe(
       mergeMap(message =>
-        this.snackBar
-          .open(message, '', { duration: 2000 })
-          .afterDismissed()
-      )
+        this.snackBar.open(message, '', { duration: 2000 }).afterDismissed(),
+      ),
     );
 
     const dismissedError$ = this.flags.errorMessage$.pipe(
       mergeMap(message =>
-        this.snackBar
-          .open(message, 'Dismiss')
-          .afterDismissed()
-        )
+        this.snackBar.open(message, 'Dismiss').afterDismissed(),
+      ),
     );
 
     const dismissed$ = merge(dismissedSuccess$, dismissedError$);
 
     this.subs.add(
-      dismissed$.subscribe(() => this.store.dispatch(new ClearFlagsAction()))
+      dismissed$.subscribe(() => this.store.dispatch(new ClearFlagsAction())),
     );
   }
 

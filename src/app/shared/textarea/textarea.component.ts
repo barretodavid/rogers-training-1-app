@@ -13,7 +13,7 @@ import { BaseInputClass } from '../base-input/base-input.class';
       </mat-error>
     </mat-form-field>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextareaComponent extends BaseInputClass {
   constructor(@Self() public controlDir: NgControl) {

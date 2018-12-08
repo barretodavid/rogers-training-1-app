@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'rg-post-summary',
   host: {
-    class: 'f1'
+    class: 'f1',
   },
   template: `
     <article>
@@ -13,13 +13,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     </article>
   `,
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostSummaryComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

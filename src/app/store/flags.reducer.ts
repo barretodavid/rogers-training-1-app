@@ -27,32 +27,32 @@ export function flagsReducer(flags = successFlags, action: Action): Flags {
     case CreatePostActionType.Success:
       return {
         ...successFlags,
-        message: 'Post saved successfully!'
+        message: 'Post saved successfully!',
       };
     case CreatePostActionType.Error:
       return {
         ...errorFlags,
-        message: 'Oops! Failed to save post'
+        message: 'Oops! Failed to save post',
       };
     case UpdatePostActionType.Success:
       return {
         ...successFlags,
-        message: 'Post updated successfully!'
+        message: 'Post updated successfully!',
       };
     case UpdatePostActionType.Error:
       return {
         ...errorFlags,
-        message: 'Oops! Failed to update post'
+        message: 'Oops! Failed to update post',
       };
     case DeletePostActionType.Success:
       return {
         ...successFlags,
-        message: 'Post deleted successfully!'
+        message: 'Post deleted successfully!',
       };
     case DeletePostActionType.Error:
       return {
         ...errorFlags,
-        message: 'Oops! Failed to delete post'
+        message: 'Oops! Failed to delete post',
       };
     case clearFlagsType: {
       return successFlags;

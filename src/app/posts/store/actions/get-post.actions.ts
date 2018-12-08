@@ -22,4 +22,7 @@ export class GetPostErrorAction implements Action {
   constructor() {}
 }
 
-export type GetPostAction = GetPostStartAction | GetPostSuccessAction | GetPostErrorAction;
+export type GetPostAction =
+  | GetPostStartAction
+  | GetPostSuccessAction
+  | GetPostErrorAction;

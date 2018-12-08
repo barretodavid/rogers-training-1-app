@@ -22,4 +22,7 @@ export class DeletePostErrorAction implements Action {
   constructor() {}
 }
 
-export type DeletePostAction = DeletePostStartAction | DeletePostSuccessAction | DeletePostErrorAction;
+export type DeletePostAction =
+  | DeletePostStartAction
+  | DeletePostSuccessAction
+  | DeletePostErrorAction;
