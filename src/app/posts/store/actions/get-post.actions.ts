@@ -19,7 +19,6 @@ export class GetPostSuccessAction implements Action {
 
 export class GetPostErrorAction implements Action {
   readonly type = GetPostActionType.Error;
-  constructor() {}
 }
 
 export type GetPostAction =

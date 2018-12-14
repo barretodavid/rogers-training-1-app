@@ -26,20 +26,27 @@ const selectIsPostAvailable = createSelector(
 
 @Injectable({ providedIn: 'root' })
 export class PostSelector {
-  fetchPost$ = this.routerSelector.uuid$.pipe(
-    mergeMap(uuid =>
-      zip(of(uuid), this.store.pipe(select(selectIsPostAvailable, { uuid }))),
-    ),
-    filter(([uuid, isPostAvailable]) => !isPostAvailable),
-    map(([uuid, isPostAvailable]) => uuid),
-  );
+  postIsNotInStore(): Observable<string> {
+    return this.routerSelector.uuid$.pipe(
+      mergeMap(uuid =>
+        zip(of(uuid), this.store.pipe(select(selectIsPostAvailable, { uuid }))),
+      ),
+      filter(([uuid, isPostAvailable]) => !isPostAvailable),
+      map(([uuid, isPostAvailable]) => uuid),
+    );
+  }
 
-  fetchAllPosts$ = this.store.pipe(
-    select(selectPosts),
-    filter(posts => posts.length === 0),
-  );
+  getFetchAllPosts(): Observable<boolean> {
+    return this.store.pipe(
+      select(selectPosts),
+      map(posts => posts.length === 0),
+      filter(isPostsEmpty => isPostsEmpty),
+    );
+  }
 
-  posts$ = this.store.pipe(select(selectPosts));
+  getPosts(): Observable<Post[]> {
+    return this.store.pipe(select(selectPosts));
+  }
 
   isPostAvailable(uuid: string): Observable<boolean> {
     return this.store.pipe(select(selectIsPostAvailable, { uuid }));

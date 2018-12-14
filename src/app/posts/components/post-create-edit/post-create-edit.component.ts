@@ -48,7 +48,7 @@ export class PostCreateEditComponent implements OnInit, OnDestroy {
     });
 
     this.subs.add(
-      this.postSelector.fetchPost$.subscribe(uuid => {
+      this.postSelector.postIsNotInStore().subscribe(uuid => {
         this.store.dispatch(new GetPostStartAction(uuid));
       }),
     );

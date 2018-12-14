@@ -19,7 +19,6 @@ export class DeletePostSuccessAction implements Action {
 
 export class DeletePostErrorAction implements Action {
   readonly type = DeletePostActionType.Error;
-  constructor() {}
 }
 
 export type DeletePostAction =

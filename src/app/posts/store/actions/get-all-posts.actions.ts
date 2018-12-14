@@ -9,7 +9,6 @@ export enum GetAllPostsActionType {
 
 export class GetAllPostsStartAction implements Action {
   readonly type = GetAllPostsActionType.Start;
-  constructor() {}
 }
 
 export class GetAllPostsSuccessAction implements Action {
@@ -19,7 +18,6 @@ export class GetAllPostsSuccessAction implements Action {
 
 export class GetAllPostsErrorAction implements Action {
   readonly type = GetAllPostsActionType.Error;
-  constructor() {}
 }
 
 export type GetAllPostsAction =

@@ -3,6 +3,7 @@
 exports[`PostListComponent when there are no posts in the store should render an empty body 1`] = `
 <rg-post-list
   postSelector={[Function Object]}
+  posts$={[Function Observable]}
   store={[Function Object]}
 >
   
@@ -12,6 +13,7 @@ exports[`PostListComponent when there are no posts in the store should render an
 exports[`PostListComponent when there is at least on blog post in the store it should render the post in the body 1`] = `
 <rg-post-list
   postSelector={[Function Object]}
+  posts$={[Function Observable]}
   store={[Function Object]}
 >
   <mat-card

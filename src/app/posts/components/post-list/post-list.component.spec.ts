@@ -38,8 +38,8 @@ describe('PostListComponent', () => {
   describe('when there are no posts in the store', () => {
     beforeEach(() => {
       postSelectorStub = {
-        fetchAllPosts$: of(null),
-        posts$: of([]),
+        getFetchAllPosts: () => of(null),
+        getPosts: () => of([]),
       };
     });
 
@@ -70,8 +70,8 @@ describe('PostListComponent', () => {
       };
 
       postSelectorStub = {
-        fetchAllPosts$: empty(),
-        posts$: of([post]),
+        getFetchAllPosts: () => empty(),
+        getPosts: () => of([post]),
       };
     });
 
