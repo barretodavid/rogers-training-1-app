@@ -1,27 +1,12 @@
-@import '~@angular/material/theming';
-
-$primary-palette: mat-palette($mat-indigo);
-$accent-palette: mat-palette($mat-pink, A200, A100, A400);
-$warn-palette: mat-palette($mat-red);
-
-$theme: mat-light-theme($primary-palette, $accent-palette, $warn-palette);
-
-$primary: mat-color($primary-palette);
-$accent: mat-color($accent-palette);
-$warn: mat-color($warn-palette);
-
-@include mat-core();
-@include angular-material-theme($theme);
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
-
-.mat-nav-list a.active {
-  color: $primary;
 }
