@@ -10,3 +10,12 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.form-card {
+  display: flex !important;
+  flex-direction: column;
+}
+
+mat-form-field {
+  min-width: 300px;
+}
