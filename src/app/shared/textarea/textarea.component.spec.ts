@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  ReactiveFormsModule,
-  FormControl,
-  NgControl,
-  Validators,
-} from '@angular/forms';
+import { ReactiveFormsModule, FormControl, NgControl, Validators } from '@angular/forms';
 import { ComponentFixture, async, TestBed } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
@@ -16,8 +11,7 @@ const formControl = new FormControl('Test', Validators.required);
 
 @Component({
   selector: 'rg-fake',
-  template:
-    '<rg-textarea [formControl]="content" label="Content"></rg-textarea>',
+  template: '<rg-textarea [formControl]="content" label="Content"></rg-textarea>',
 })
 class FakeComponent {
   content = formControl;
@@ -30,13 +24,7 @@ describe('TextareaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-        CommonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-      ],
+      imports: [NoopAnimationsModule, CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
       declarations: [FakeComponent, TextareaComponent],
     })
       .overrideComponent(TextareaComponent, {
@@ -59,27 +47,27 @@ describe('TextareaComponent', () => {
     fixture.detectChanges();
   });
 
-  test('Should render', () => {
-    expect(fixture).toMatchSnapshot();
+  it('Should render', () => {
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
   describe('When clearing the textarea and losing focus', () => {
-    test('Should render an error message', () => {
+    it('Should render an error message', () => {
       component.content.patchValue('');
       fixture.detectChanges();
       textarea.dispatchEvent(new Event('blur'));
       fixture.detectChanges();
-      expect(fixture).toMatchSnapshot();
+      expect(fixture.nativeElement.textContent).toBe('Content This field is required ');
     });
   });
 
   describe('When adding a value to the textarea and losing focus', () => {
-    test('Should not render an error message', () => {
+    it('Should not render an error message', () => {
       component.content.patchValue('Some content');
       fixture.detectChanges();
       textarea.dispatchEvent(new Event('blur'));
       fixture.detectChanges();
-      expect(fixture).toMatchSnapshot();
+      expect(fixture.nativeElement.textContent).toBe('Content');
     });
   });
 });

@@ -53,10 +53,7 @@ export class PostSelector {
   }
 
   getPostByUUID(uuid: string): Observable<Post> {
-    return this.store.pipe(
-      select(selectPostByUUID, { uuid }),
-      filter(Boolean),
-    );
+    return this.store.pipe(select(selectPostByUUID, { uuid }));
   }
 
   constructor(

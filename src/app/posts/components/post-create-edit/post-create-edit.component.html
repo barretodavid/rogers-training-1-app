@@ -6,28 +6,24 @@
     <mat-card-title *ngIf="routerSelector.isEdit$ | async">
       Edit Blog Post
     </mat-card-title>
-    <mat-card-content class="flex flex-column">
+    <mat-card-content class="form-card">
       <rg-input formControlName="title" label="Title"></rg-input>
       <rg-textarea formControlName="content" label="Content"></rg-textarea>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button
-        type="button"
-        color="primary"
-        [disabled]="!blogForm.valid"
-        (click)="onSave()">
+      <button mat-raised-button type="button" color="primary" [disabled]="!blogForm.valid" (click)="onSave()">
         Save
       </button>
-      <button mat-raised-button
+      <button
+        mat-raised-button
         *ngIf="routerSelector.isEdit$ | async"
         type="button"
         color="warn"
-        (click)="onDelete(postUUID)">
+        (click)="onDelete(postUUID)"
+      >
         Delete
       </button>
-      <button mat-raised-button
-        type="button"
-        [routerLink]="['/']">
+      <button mat-raised-button type="button" [routerLink]="['/']">
         Back to List
       </button>
     </mat-card-actions>

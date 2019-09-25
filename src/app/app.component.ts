@@ -24,13 +24,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const dismissedSuccess$ = this.flags.successMessage$.pipe(
-      mergeMap(message =>
+      mergeMap((message: string) =>
         this.snackBar.open(message, '', { duration: 2000 }).afterDismissed(),
       ),
     );
 
     const dismissedError$ = this.flags.errorMessage$.pipe(
-      mergeMap(message =>
+      mergeMap((message: string) =>
         this.snackBar.open(message, 'Dismiss').afterDismissed(),
       ),
     );

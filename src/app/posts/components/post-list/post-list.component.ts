@@ -9,7 +9,7 @@ import { Post } from '../../posts.models';
 @Component({
   selector: 'rg-post-list',
   template: `
-    <mat-card class="mv2" *ngFor="let post of (posts$ | async)">
+    <mat-card class="mv2" *ngFor="let post of posts$ | async">
       <mat-card-title>
         <a [routerLink]="['/edit-post', post.uuid]">{{ post.title }}</a>
       </mat-card-title>
